@@ -19,7 +19,7 @@ elif [ "$1" = "traineedsrsq" ]
 then
     W=69
     H=69
-    python3.6 main.py --model EEDSR --scale 3 --n_resblocks 32 --n_feats 256 --res_scale 0.1 --loss "1*ML1" --save EEDSR_B32F256_ML1_"$W"x"$H"_all_rot_noblur --epochs 300 --batch_size 24 --dir_data /workspace/dataset/lpt_square/images --datatype simureal --data_test LPTSQUARE --data_train LPTSQUARE --std-lr-width $W --std-lr-height $H --gauss-std -1 --interp nearest --freesize --reset
+    python main.py --model EEDSR --scale 3 --n_resblocks 32 --n_feats 256 --res_scale 0.1 --loss "1*ML1" --save EEDSR_B32F256_ML1_"$W"x"$H"_all_rot_noblur --epochs 300 --batch_size 24 --dir_data /workspace/dataset/lpt_square/images --datatype simureal --data_test LPTSQUARE --data_train LPTSQUARE --std-lr-width $W --std-lr-height $H --gauss-std -1 --interp nearest --freesize --reset
 elif [ "$1" = "trainddbpn" ]
 then
     python main.py --model DDBPN --scale 2 --load DDBPN_46x32_all_noblur --batch_size 24 --epochs 300 --dir_data /workspace/dataset/lpt_square/images_rect --datatype simureal --data_test LPT --data_train LPT --std-lr-width 46 --std-lr-height 32 --gauss-std -1 --interp nearest --reset 
@@ -41,7 +41,7 @@ elif [ "$1" = "trainrdnsq" ]
 then
     W=48
     H=48
-    python3.6 main.py --model RDN --scale 3 --RDNconfig B --batch_size 16 --model_best_loss 2 --save RDN_D16C8G64_"$W"x"$H"_all_rot_noblur_run2 --epochs 300 --dir_data /workspace/dataset/lpt_square/images --datatype simureal --data_test LPTSQUARE --data_train LPTSQUARE --std-lr-width $W --std-lr-height $H --gauss-std -1 --interp nearest --reset
+    python main.py --model RDN --scale 3 --RDNconfig B --batch_size 16 --model_best_loss 2 --save RDN_D16C8G64_"$W"x"$H"_all_rot_noblur_run2 --epochs 300 --dir_data /workspace/dataset/lpt_square/images --datatype simureal --data_test LPTSQUARE --data_train LPTSQUARE --std-lr-width $W --std-lr-height $H --gauss-std -1 --interp nearest --reset
 elif [ "$1" = "trainerdn" ]
 then
     W=69
