@@ -13,8 +13,6 @@ checkpoint = utility.checkpoint(args)
 starttime = datetime.datetime.now()
 checkpoint.write_log(starttime.strftime('%d-%m-%Y-%H:%M:%S'))
 
-print(args)
-
 if checkpoint.ok:
     my_loader = data().get_loader(args)
 

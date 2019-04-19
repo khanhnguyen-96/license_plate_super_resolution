@@ -177,8 +177,9 @@ if args.epochs == 0:
     args.epochs = 1e8
 
 for arg in vars(args):
+    print(arg)
+
     if vars(args)[arg] == 'True':
         vars(args)[arg] = True
     elif vars(args)[arg] == 'False':
         vars(args)[arg] = False
-
