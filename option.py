@@ -233,8 +233,8 @@ args.scale = list(map(lambda x: int(x), args.scale.split("+")))
 if args.epochs == 0:
     args.epochs = 1e8
 
-for arg in vars(args):
-    print(arg)
+for key, arg in vars(args).items():
+    print(key + ": " + arg)
 
     if vars(args)[arg] == "True":
         vars(args)[arg] = True
