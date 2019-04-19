@@ -2,23 +2,27 @@ import sys
 import threading
 import queue
 import random
-import collections
+# import collections
 
 import torch
 import torch.multiprocessing as multiprocessing
 
-from torch._C import _set_worker_signal_handlers, _update_worker_pids, \
-    _remove_worker_pids, _error_if_any_worker_fails
+from torch._C import (
+    _set_worker_signal_handlers,
+    _update_worker_pids,
+    # _remove_worker_pids,
+    # _error_if_any_worker_fails,
+)
 from torch.utils.data.dataloader import DataLoader
 from torch.utils.data.dataloader import _DataLoaderIter
 
 from torch.utils.data.dataloader import ExceptionWrapper
 from torch.utils.data.dataloader import _use_shared_memory
 from torch.utils.data.dataloader import _pin_memory_loop
-from torch.utils.data.dataloader import numpy_type_map
+# from torch.utils.data.dataloader import numpy_type_map
 from torch.utils.data.dataloader import default_collate
-from torch.utils.data.dataloader import pin_memory_batch
-from torch.utils.data.dataloader import _SIGCHLD_handler_set
+# from torch.utils.data.dataloader import pin_memory_batch
+# from torch.utils.data.dataloader import _SIGCHLD_handler_set
 from torch.utils.data.dataloader import _set_SIGCHLD_handler
 
 if sys.version_info[0] == 2:
@@ -26,7 +30,10 @@ if sys.version_info[0] == 2:
 else:
     import queue
 
-def _ms_loop(dataset, index_queue, data_queue, collate_fn, scale, seed, init_fn, worker_id):
+
+def _ms_loop(
+    dataset, index_queue, data_queue, collate_fn, scale, seed, init_fn, worker_id
+):
     global _use_shared_memory
     _use_shared_memory = True
     _set_worker_signal_handlers()
@@ -51,6 +58,7 @@ def _ms_loop(dataset, index_queue, data_queue, collate_fn, scale, seed, init_fn,
             data_queue.put((idx, ExceptionWrapper(sys.exc_info())))
         else:
             data_queue.put((idx, samples))
+
 
 class _MSDataLoaderIter(_DataLoaderIter):
     def __init__(self, loader):
@@ -91,10 +99,11 @@ class _MSDataLoaderIter(_DataLoaderIter):
                         self.scale,
                         base_seed + i,
                         self.worker_init_fn,
-                        i
-                    )
+                        i,
+                    ),
                 )
-                for i in range(self.num_workers)]
+                for i in range(self.num_workers)
+            ]
 
             if self.pin_memory or self.timeout > 0:
                 self.data_queue = queue.Queue()
@@ -105,17 +114,24 @@ class _MSDataLoaderIter(_DataLoaderIter):
                     maybe_device_id = None
                 # self.worker_manager_thread = threading.Thread(
                 #     target=_worker_manager_loop,
-                #     args=(self.worker_result_queue, self.data_queue, self.done_event, self.pin_memory,
-                #           maybe_device_id))
+                #     args=(
+                #         self.worker_result_queue,
+                #         self.data_queue,
+                #         self.done_event,
+                #         self.pin_memory,
+                #         maybe_device_id,
+                #     ),
+                # )
                 # self.worker_manager_thread.daemon = True
                 # self.worker_manager_thread.start()
                 self.pin_memory_thread = threading.Thread(
-                    target = _pin_memory_loop, 
-                    args = (
-                        self.worker_result_queue, 
-                        self.data_queue, maybe_device_id, 
-                        self.done_event 
-                    )
+                    target=_pin_memory_loop,
+                    args=(
+                        self.worker_result_queue,
+                        self.data_queue,
+                        maybe_device_id,
+                        self.done_event,
+                    ),
                 )
                 self.pin_memory_thread.daemon = True
                 self.pin_memory_thread.start()
@@ -134,22 +150,38 @@ class _MSDataLoaderIter(_DataLoaderIter):
             for _ in range(2 * self.num_workers):
                 self._put_indices()
 
+
 class MSDataLoader(DataLoader):
     def __init__(
-        self, args, dataset, batch_size=1, shuffle=False,
-        sampler=None, batch_sampler=None,
-        collate_fn=default_collate, pin_memory=False, drop_last=False,
-        timeout=0, worker_init_fn=None):
+        self,
+        args,
+        dataset,
+        batch_size=1,
+        shuffle=False,
+        sampler=None,
+        batch_sampler=None,
+        collate_fn=default_collate,
+        pin_memory=False,
+        drop_last=False,
+        timeout=0,
+        worker_init_fn=None,
+    ):
 
         super(MSDataLoader, self).__init__(
-            dataset, batch_size=batch_size, shuffle=shuffle,
-            sampler=sampler, batch_sampler=batch_sampler,
-            num_workers=args.n_threads, collate_fn=collate_fn,
-            pin_memory=pin_memory, drop_last=drop_last,
-            timeout=timeout, worker_init_fn=worker_init_fn)
+            dataset,
+            batch_size=batch_size,
+            shuffle=shuffle,
+            sampler=sampler,
+            batch_sampler=batch_sampler,
+            num_workers=args.n_threads,
+            collate_fn=collate_fn,
+            pin_memory=pin_memory,
+            drop_last=drop_last,
+            timeout=timeout,
+            worker_init_fn=worker_init_fn,
+        )
 
         self.scale = args.scale
 
     def __iter__(self):
         return _MSDataLoaderIter(self)
-
