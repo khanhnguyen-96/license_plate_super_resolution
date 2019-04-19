@@ -234,9 +234,9 @@ if args.epochs == 0:
     args.epochs = 1e8
 
 for key, arg in vars(args).items():
-    print(key + ": " + arg)
+    print(str(key) + ": " + str(arg))
 
-    if vars(args)[arg] == "True":
-        vars(args)[arg] = True
-    elif vars(args)[arg] == "False":
-        vars(args)[arg] = False
+    if vars(args)[key] == "True":
+        vars(args)[key] = True
+    elif vars(args)[key] == "False":
+        vars(args)[key] = False
