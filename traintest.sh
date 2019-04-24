@@ -39,9 +39,9 @@ then
     python main.py --model RDN --scale 3 --RDNconfig B --batch_size 24 --save test --epochs 300 --dir_data /workspace/dataset/lpt_square/images_rect --datatype simureal --data_test LPT --data_train LPT --std-lr-width 23 --std-lr-height 16 --gauss-std -1 --interp nearest
 elif [ "$1" = "trainrdnsq" ]
 then
-    W=178
-    H=218
-    python main.py --model RDN --scale 3 --RDNconfig B --batch_size 16 --model_best_loss 2 --save RDN_D16C8G64_"$W"x"$H"_all_rot_noblur_run2 --epochs 300 --dir_data /workspace/dataset/lpt_square/images --datatype simureal --data_test LPTSQUARE --data_train LPTSQUARE --std-lr-width $W --std-lr-height $H --gauss-std -1 --interp nearest --reset
+    W=64
+    H=64
+    python main.py --model RDN --scale 4 --RDNconfig B --batch_size 16 --model_best_loss 2 --save RDN_D16C8G64_"$W"x"$H"_all_rot_noblur_run2 --epochs 300 --dir_dataLR /content/ --datatype simureal --data_test LMDB --data_train LMDB --std-lr-width $W --std-lr-height $H --gauss-std -1 --interp nearest --reset
 elif [ "$1" = "trainerdn" ]
 then
     W=69

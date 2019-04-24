@@ -19,9 +19,7 @@ class SRData(data.Dataset):
         self.idx_scale = 0
 
         # Rotate square image only
-        self.rot = True
-        if args.std_lr_width != args.std_lr_height:
-            self.rot = False
+        self.rot = True if args.std_lr_width == args.std_lr_height else False
 
         if (
             self.args.interp != "bicubic"
