@@ -25,8 +25,11 @@ IMG_EXTENSIONS = [
 
 
 class LMDB(data.Dataset):
-    def __init__(self, opt):
+    def __init__(self, opt, train=True):
         super(LMDB, self).__init__()
+
+        print("train boolean: " + train)
+
         self.opt = opt
         self.paths_LR = None
         self.paths_HR = None
