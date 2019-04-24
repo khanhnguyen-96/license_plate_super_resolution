@@ -52,7 +52,9 @@ def _ms_loop(
                 dataset.set_scale(idx_scale)
 
             samples = collate_fn([dataset[i] for i in batch_indices])
-            print(samples)
+
+            print("\n" + samples + "\n")
+
             samples.append(idx_scale)
 
         except Exception:
