@@ -62,6 +62,12 @@ parser.add_argument(
     "--dir_data", type=str, default="./dataset", help="dataset directory"
 )
 parser.add_argument(
+    "--dir_dataLR", type=str, default="./dataset", help="dataset LR directory"
+)
+parser.add_argument(
+    "--dir_dataHR", type=str, default="./dataset", help="dataset HR directory"
+)
+parser.add_argument(
     "--data_train", type=str, default="DIV2K", help="train dataset name"
 )
 parser.add_argument("--data_test", type=str, default="DIV2K", help="test dataset name")
