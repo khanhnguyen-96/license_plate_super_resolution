@@ -53,7 +53,9 @@ def _ms_loop(
 
             samples = collate_fn([dataset[i] for i in batch_indices])
 
-            print("\n" + samples + "\n")
+            print("\n")
+            print(samples)
+            print("\n")
 
             samples.append(idx_scale)
 
