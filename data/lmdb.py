@@ -35,6 +35,7 @@ class LMDB(data.Dataset):
         self.paths_HR = None
         self.LR_env = None
         self.HR_env = None
+        self.train = train
 
         self.LR_env, self.paths_LR = get_image_paths("lmdb", opt.dir_dataLR)
         self.HR_env, self.paths_HR = get_image_paths("lmdb", opt.dir_dataHR)
