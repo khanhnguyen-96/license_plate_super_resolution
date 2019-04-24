@@ -51,11 +51,11 @@ class Trainer:
         timer_data, timer_model = utility.timer(), utility.timer()
         for batch, ((lr, labels), hr, idx_scale) in enumerate(self.loader_train):
             print("\n")
-            print(batch)
+            print("batch: " + batch)
             print("\n")
-            print(lr)
+            print("lr: " + lr)
             print("\n")
-            print(hr)
+            print("hr: " + hr)
             lr, hr = self.prepare([lr, hr])
             self._scale_change(idx_scale)
 
