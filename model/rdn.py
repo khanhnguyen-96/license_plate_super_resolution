@@ -92,10 +92,9 @@ class RDN(nn.Module):
                 ]
             )
         elif r == 4:
-            print(G0, G, r)
             self.UPNet = nn.Sequential(
                 *[
-                    nn.Conv2d(G0, G * r, kSize, padding=(kSize - 1) // 2, stride=1),
+                    nn.Conv2d(G0, G * r * r, kSize, padding=(kSize - 1) // 2, stride=1),
                     nn.PixelShuffle(2),
                     nn.Conv2d(G, G * r * r, kSize, padding=(kSize - 1) // 2, stride=1),
                     nn.PixelShuffle(2),
@@ -118,5 +117,7 @@ class RDN(nn.Module):
 
         x = self.GFF(torch.cat(RDBs_out, 1))
         x += f__1
+
+        print("x: \n" + str(x))
 
         return self.UPNet(x)
