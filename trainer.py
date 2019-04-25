@@ -56,11 +56,11 @@ class Trainer:
             labels = ""
 
             print("\n")
-            print("batch: " + batch)
+            print("batch: " + str(batch))
             print("\n")
-            print("lr: " + lr)
+            print("lr: " + str(lr))
             print("\n")
-            print("hr: " + hr)
+            print("hr: " + str(hr))
             lr, hr = self.prepare([lr, hr])
             self._scale_change(idx_scale)
 
