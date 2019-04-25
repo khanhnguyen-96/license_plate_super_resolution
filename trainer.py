@@ -49,22 +49,22 @@ class Trainer:
         # timer_train = utility.timer() # My code 22.4.2018
 
         timer_data, timer_model = utility.timer(), utility.timer()
-        for batch, ((lr, labels), hr, idx_scale) in enumerate(self.loader_train):
+        for batch, x in enumerate(self.loader_train):
             print("\n")
             print("batch: " + batch)
             print("\n")
-            print("lr: " + lr)
+            print("x: " + x)
             print("\n")
-            print("hr: " + hr)
-            lr, hr = self.prepare([lr, hr])
-            self._scale_change(idx_scale)
+            # print("hr: " + hr)
+            # lr, hr = self.prepare([lr, hr])
+            # self._scale_change(idx_scale)
 
             timer_data.hold()
             timer_model.tic()
 
             self.optimizer.zero_grad()
             sr = self.model(lr)
-            loss = self._calc_loss(sr, hr, labels)
+            # loss = self._calc_loss(sr, hr, labels)
             if loss.item() < self.args.skip_threshold * self.error_last:
                 loss.backward()
                 self.optimizer.step()
