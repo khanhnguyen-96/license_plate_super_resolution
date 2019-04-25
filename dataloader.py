@@ -53,12 +53,7 @@ def _ms_loop(
 
             samples = collate_fn([dataset[i] for i in batch_indices])
 
-            print("\n")
-            print("Samples: ")
-            print(samples)
-            print("\n")
-
-            samples.append(idx_scale)
+            samples["idx_scale"] = idx_scale
 
         except Exception:
             data_queue.put((idx, ExceptionWrapper(sys.exc_info())))
