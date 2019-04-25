@@ -51,9 +51,11 @@ class Trainer:
         timer_data, timer_model = utility.timer(), utility.timer()
         for batch, x in enumerate(self.loader_train):
             print("\n")
-            print("batch: " + batch)
+            print("batch: ")
+            print(batch)
             print("\n")
-            print("x: " + x)
+            print("x: ")
+            print(x)
             print("\n")
             # print("hr: " + hr)
             # lr, hr = self.prepare([lr, hr])
