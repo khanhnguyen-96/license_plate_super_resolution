@@ -118,6 +118,4 @@ class RDN(nn.Module):
         x = self.GFF(torch.cat(RDBs_out, 1))
         x += f__1
 
-        print("x: \n" + str(x))
-
         return self.UPNet(x)

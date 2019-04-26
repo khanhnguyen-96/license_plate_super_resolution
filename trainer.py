@@ -5,6 +5,7 @@ import datetime
 import utility
 
 import torch
+from torchsummary import summary
 # from torch.autograd import Variable
 
 
@@ -68,7 +69,9 @@ class Trainer:
             timer_model.tic()
 
             self.optimizer.zero_grad()
-            type(self.model)
+
+            summary(lr)
+
             sr = self.model(lr)
             loss = self._calc_loss(sr, hr, labels)
             if loss.item() < self.args.skip_threshold * self.error_last:
