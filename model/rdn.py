@@ -94,7 +94,7 @@ class RDN(nn.Module):
         elif r == 4:
             self.UPNet = nn.Sequential(
                 *[
-                    nn.Conv2d(G0, G * r * r, kSize, padding=(kSize - 1) // 2, stride=1),
+                    nn.Conv2d(G0, G, kSize, padding=(kSize - 1) // 2, stride=1),
                     nn.PixelShuffle(2),
                     nn.Conv2d(G, G * r * r, kSize, padding=(kSize - 1) // 2, stride=1),
                     nn.PixelShuffle(2),
@@ -121,12 +121,5 @@ class RDN(nn.Module):
         x += f__1
 
         print(x.size())
-        print(
-            [
-                method_name
-                for method_name in dir(x)
-            ]
-        )
-        print(x.shape)
 
         return self.UPNet(x)
