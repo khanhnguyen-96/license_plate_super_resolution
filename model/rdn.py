@@ -92,7 +92,6 @@ class RDN(nn.Module):
                 ]
             )
         elif r == 4:
-            print(G0, kSize)
             self.UPNet = nn.Sequential(
                 *[
                     nn.Conv2d(G0, G * r * r, kSize, padding=(kSize - 1) // 2, stride=1),
