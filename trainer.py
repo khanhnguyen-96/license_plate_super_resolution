@@ -70,7 +70,8 @@ class Trainer:
 
             self.optimizer.zero_grad()
 
-            summary(self.model, lr)
+            print(type(self.model))
+            print(self.model)
 
             sr = self.model(lr)
             loss = self._calc_loss(sr, hr, labels)
