@@ -6,6 +6,7 @@ import utility
 
 import torch
 from torchsummary import summary
+
 # from torch.autograd import Variable
 
 
@@ -70,8 +71,14 @@ class Trainer:
 
             self.optimizer.zero_grad()
 
-            print(type(self.model))
-            print(self.model)
+            print(
+                [
+                    method_name
+                    for method_name in dir(lr)
+                    if callable(getattr(lr, method_name))
+                ]
+            )
+            print(lr.size())
 
             sr = self.model(lr)
             loss = self._calc_loss(sr, hr, labels)
