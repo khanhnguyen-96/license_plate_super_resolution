@@ -60,9 +60,9 @@ class Trainer:
             print("\n")
             print("batch: " + str(batch))
             print("\n")
-            print("lr: " + str(lr))
+            print("lr: " + str(lr.shape))
             print("\n")
-            print("hr: " + str(hr))
+            print("hr: " + str(hr.shape))
             lr, hr = self.prepare([lr, hr])
             self._scale_change(idx_scale)
 
