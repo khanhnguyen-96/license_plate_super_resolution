@@ -122,7 +122,6 @@ class RDN(nn.Module):
             [
                 method_name
                 for method_name in dir(x)
-                if callable(getattr(x, method_name))
             ]
         )
         print(x.shape)
