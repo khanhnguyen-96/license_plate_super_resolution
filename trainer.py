@@ -71,15 +71,6 @@ class Trainer:
 
             self.optimizer.zero_grad()
 
-            print(
-                [
-                    method_name
-                    for method_name in dir(lr)
-                    if callable(getattr(lr, method_name))
-                ]
-            )
-            print(lr.size())
-
             sr = self.model(lr)
             loss = self._calc_loss(sr, hr, labels)
             if loss.item() < self.args.skip_threshold * self.error_last:

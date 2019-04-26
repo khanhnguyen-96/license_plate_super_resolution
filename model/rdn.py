@@ -118,4 +118,13 @@ class RDN(nn.Module):
         x = self.GFF(torch.cat(RDBs_out, 1))
         x += f__1
 
+        print(
+            [
+                method_name
+                for method_name in dir(x)
+                if callable(getattr(x, method_name))
+            ]
+        )
+        print(x.shape)
+
         return self.UPNet(x)
