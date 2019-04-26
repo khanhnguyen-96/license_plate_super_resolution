@@ -97,7 +97,11 @@ class RDN(nn.Module):
                     nn.Conv2d(G0, G * r * r, kSize, padding=(kSize - 1) // 2, stride=1),
                     nn.PixelShuffle(2),
                     nn.Conv2d(
-                        G / r / r, G * r * r, kSize, padding=(kSize - 1) // 2, stride=1
+                        int(G / r / r),
+                        G * r * r,
+                        kSize,
+                        padding=(kSize - 1) // 2,
+                        stride=1,
                     ),
                     nn.PixelShuffle(2),
                     nn.Conv2d(
