@@ -92,17 +92,12 @@ class RDN(nn.Module):
                 ]
             )
         elif r == 4:
+            print(G0, kSize)
             self.UPNet = nn.Sequential(
                 *[
                     nn.Conv2d(G0, G * r * r, kSize, padding=(kSize - 1) // 2, stride=1),
                     nn.PixelShuffle(2),
-                    nn.Conv2d(
-                        int(G / r / r),
-                        G * r * r,
-                        kSize,
-                        padding=(kSize - 1) // 2,
-                        stride=1,
-                    ),
+                    nn.Conv2d(G, G * r * r, kSize, padding=(kSize - 1) // 2, stride=1),
                     nn.PixelShuffle(2),
                     nn.Conv2d(
                         G, args.n_colors, kSize, padding=(kSize - 1) // 2, stride=1
