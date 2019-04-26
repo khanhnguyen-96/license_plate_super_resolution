@@ -107,6 +107,8 @@ class RDN(nn.Module):
             raise ValueError("scale must be 1 or 2 or 3 or 4.")
 
     def forward(self, x):
+        print(x.size())
+
         f__1 = self.SFENet1(x)
         x = self.SFENet2(f__1)
 
@@ -118,6 +120,7 @@ class RDN(nn.Module):
         x = self.GFF(torch.cat(RDBs_out, 1))
         x += f__1
 
+        print(x.size())
         print(
             [
                 method_name
