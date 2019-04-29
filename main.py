@@ -1,17 +1,21 @@
 import torch
+import shutil
+import errno
+import distutils.dir_util as du
 
 import utility
 import datetime
 from option import args
 from data import data
 from trainer import Trainer
+
 # from torchvision import utils
 
 torch.manual_seed(args.seed)
 checkpoint = utility.checkpoint(args)
 
 starttime = datetime.datetime.now()
-checkpoint.write_log(starttime.strftime('%d-%m-%Y-%H:%M:%S'))
+checkpoint.write_log(starttime.strftime("%d-%m-%Y-%H:%M:%S"))
 
 if checkpoint.ok:
     my_loader = data().get_loader(args)
@@ -36,7 +40,12 @@ if checkpoint.ok:
     while not t.terminate():
         t.train()
         t.test(starttime=starttime)
+        du.copy_tree(
+            "/content/experiment/RDN_D16C8G64_64x64_all_rot_noblur_run2",
+            "/content/gdrive/My Drive/LVTN/SuperResolution/SR_models/"
+            + "license_plate_super_resolution/experiments/",
+        )
     now = datetime.datetime.now()
-    checkpoint.write_log(now.strftime('%d-%m-%Y-%H:%M:%S'))
+    checkpoint.write_log(now.strftime("%d-%m-%Y-%H:%M:%S"))
     checkpoint.write_log("Time elapsed: {}".format(str(now - starttime)))
     checkpoint.done()
