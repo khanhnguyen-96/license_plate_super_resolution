@@ -29,10 +29,6 @@ class Trainer:
 
         print(self.scheduler)
 
-    def _scale_change(self,  0]
-
-        print(self.scheduler)
-
     def _scale_change(self, idx_scale, testset=None):
         if len(self.scale) > 1:
             if self.args.n_GPUs == 1:
