@@ -41,7 +41,7 @@ if checkpoint.ok:
         t.train()
         t.test(starttime=starttime)
         du.copy_tree(
-            "/content/experiment/RDN_D16C8G64_64x64_all_rot_noblur_run2",
+            "/content/experiment",
             "/content/gdrive/My Drive/LVTN/SuperResolution/SR_models/"
             + "license_plate_super_resolution/experiments/",
         )
