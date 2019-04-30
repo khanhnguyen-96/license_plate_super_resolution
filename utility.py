@@ -53,8 +53,6 @@ class checkpoint:
         self.ok = True
         now = datetime.datetime.now().strftime("%Y-%m-%d-%H:%M:%S")
 
-        print(args.load)
-
         if args.load == ".":
             if args.save == ".":
                 args.save = now
