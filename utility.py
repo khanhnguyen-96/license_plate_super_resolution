@@ -56,9 +56,9 @@ class checkpoint:
         if args.load == ".":
             if args.save == ".":
                 args.save = now
-            self.dir = "../experiment/" + args.save
+            self.dir = "/content/experiment/" + args.save
         else:
-            self.dir = "../experiment/" + args.load
+            self.dir = "/content/experiment/" + args.load
             if not os.path.exists(self.dir):
                 args.load = "."
 
