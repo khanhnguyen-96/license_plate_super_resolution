@@ -2,14 +2,12 @@ import os
 import math
 import time
 import datetime
-
 # from functools import reduce
 
 import matplotlib
 import matplotlib.pyplot as plt
 
 import numpy as np
-
 # import skimage.io as sio
 # import skimage.color as sc
 
@@ -119,12 +117,7 @@ class checkpoint:
                 my_model.load_state_dict(
                     torch.load(self.dir + "/model/model_latest.pt")
                 )
-                resume = len(self.log_test)
-                print(
-                    "log training: "
-                    + str(len(self.log_training))
-                    + str(self.log_training.shape)
-                )
+                resume = 21
             else:
                 my_model.load_state_dict(
                     torch.load(self.dir + "/model/model_{}.pt".format(resume))
