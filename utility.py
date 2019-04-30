@@ -86,8 +86,6 @@ class checkpoint:
         my_model = model().get_model(self.args)
         trainable = filter(lambda x: x.requires_grad, my_model.parameters())
 
-        print(self.args.load)
-
         if self.args.optimizer == "SGD":
             optimizer_function = optim.SGD
             kwargs = {"momentum": self.args.momentum}

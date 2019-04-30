@@ -32,6 +32,8 @@ if checkpoint.ok:
     #    break
     # raise SystemExit
 
+    print(checkpoint.args.load)
+
     t = Trainer(my_loader, checkpoint, args)
     # My code 12.6.2018
     sump = sum(p.numel() for p in t.model.parameters())
