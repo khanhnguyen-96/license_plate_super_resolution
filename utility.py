@@ -118,7 +118,7 @@ class checkpoint:
                     torch.load(self.dir + "/model/model_latest.pt")
                 )
                 resume = len(self.log_test)
-                print("log test: " + str(log_test))
+                print("log test: " + str(self.log_test))
             else:
                 my_model.load_state_dict(
                     torch.load(self.dir + "/model/model_{}.pt".format(resume))
