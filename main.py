@@ -1,6 +1,4 @@
 import torch
-import shutil
-import errno
 import distutils.dir_util as du
 
 import utility
@@ -15,8 +13,6 @@ print("args.load before" + str(args.load))
 
 torch.manual_seed(args.seed)
 checkpoint = utility.checkpoint(args)
-
-print("args.load after" + str(args.load))
 
 starttime = datetime.datetime.now()
 checkpoint.write_log(starttime.strftime("%d-%m-%Y-%H:%M:%S"))
@@ -35,6 +31,8 @@ if checkpoint.ok:
     #        utils.save_image(b[0],"i{0}_{1}.png".format(iteration,i),normalize=True,range=(0,255))
     #    break
     # raise SystemExit
+
+    print("args.load after" + str(args.load))
 
     t = Trainer(my_loader, checkpoint, args)
     # My code 12.6.2018
