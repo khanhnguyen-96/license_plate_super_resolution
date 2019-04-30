@@ -49,7 +49,6 @@ class timer:
 
 class checkpoint:
     def __init__(self, args):
-        print("args in init: " + str(args.load))
         self.args = args
         self.ok = True
         now = datetime.datetime.now().strftime("%Y-%m-%d-%H:%M:%S")
@@ -60,7 +59,6 @@ class checkpoint:
             self.dir = "/content/experiment/" + args.save
         else:
             self.dir = "/content/experiment/" + args.load
-            print("Is exist load path: " + str(os.path.exists(self.dir)))
             if not os.path.exists(self.dir):
                 args.load = "."
 
