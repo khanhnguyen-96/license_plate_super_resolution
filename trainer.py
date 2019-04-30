@@ -27,7 +27,7 @@ class Trainer:
 
         self.test_time = [0, 0]
 
-        print(self.scheduler)
+        print(self.scheduler.last_epoch)
 
     def _scale_change(self, idx_scale, testset=None):
         if len(self.scale) > 1:
