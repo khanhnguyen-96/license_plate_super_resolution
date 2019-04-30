@@ -9,8 +9,6 @@ from trainer import Trainer
 
 # from torchvision import utils
 
-print("args.load before" + str(args.load))
-
 torch.manual_seed(args.seed)
 checkpoint = utility.checkpoint(args)
 
@@ -31,8 +29,6 @@ if checkpoint.ok:
     #        utils.save_image(b[0],"i{0}_{1}.png".format(iteration,i),normalize=True,range=(0,255))
     #    break
     # raise SystemExit
-
-    print("args.load after" + str(args.load))
 
     t = Trainer(my_loader, checkpoint, args)
     # My code 12.6.2018

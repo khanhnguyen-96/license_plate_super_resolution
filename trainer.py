@@ -1,11 +1,9 @@
 # import math
 from decimal import Decimal
 import datetime
+import torch
 
 import utility
-
-import torch
-from torchsummary import summary
 
 # from torch.autograd import Variable
 
