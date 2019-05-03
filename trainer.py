@@ -57,8 +57,6 @@ class Trainer:
             idx_scale = data["idx_scale"]
             labels = ""
 
-            print("batch: " + str(batch))
-
             lr, hr = self.prepare([lr, hr])
             self._scale_change(idx_scale)
 
