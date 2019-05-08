@@ -117,7 +117,7 @@ class checkpoint:
                 my_model.load_state_dict(
                     torch.load(self.dir + "/model/model_latest.pt")
                 )
-                resume = 276
+                resume = 280
             else:
                 my_model.load_state_dict(
                     torch.load(self.dir + "/model/model_{}.pt".format(resume))
