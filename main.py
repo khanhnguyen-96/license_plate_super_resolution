@@ -1,5 +1,5 @@
 import torch
-import distutils.dir_util as du
+# import distutils.dir_util as du
 
 import utility
 import datetime
@@ -38,11 +38,11 @@ if checkpoint.ok:
     while not t.terminate():
         t.train()
         t.test(starttime=starttime)
-        du.copy_tree(
-            "/content/experiment",
-            "/content/gdrive/My Drive/LVTN/SuperResolution/SR_models/"
-            + "license_plate_super_resolution/experiments/",
-        )
+        # du.copy_tree(
+        #     "/content/experiment",
+        #     "/content/gdrive/My Drive/LVTN/SuperResolution/SR_models/"
+        #     + "license_plate_super_resolution/experiments/",
+        # )
     now = datetime.datetime.now()
     checkpoint.write_log(now.strftime("%d-%m-%Y-%H:%M:%S"))
     checkpoint.write_log("Time elapsed: {}".format(str(now - starttime)))
