@@ -98,7 +98,7 @@ then
 elif [ "$1" = "testrdnsq" ]
 then
     # Choosing this one for test
-    python main.py --model RDN --RDNconfig C --G0 31 --data_test Demo --data_train LPTSQUARE  --scale 4 --pre_train $2 --test_only --save_results --dir-testlpt $testdir --std-lr-width 44 --std-lr-height 54 --gauss-std -1 --interp nearest
+    python main.py --model RDN --RDNconfig C --G0 31 --data_test Demo --scale 4 --pre_train $2 --test_only --save_results --dir-testlpt $testdir --std-lr-width 44 --std-lr-height 54 --gauss-std -1 --interp nearest
 elif [ "$1" = "testerdn" ]
 then
     python main.py --model ERDN1 --RDNconfig B --data_test Demo --data_train LPT --scale 3 --pre_train $2 --test_only --save_results --dir-testlpt $testdir --std-lr-width 69 --std-lr-height 48 --gauss-std -1 --interp nearest --freesize
